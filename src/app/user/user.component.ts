@@ -1,6 +1,7 @@
 import { Component,Input,input,computed,Output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 import { User } from './user.model';
+import { CardComponent } from "../shared/card/card.component";
 const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 // interface User {
 //     id: String;
@@ -13,11 +14,13 @@ const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
+  imports: [CardComponent]
 })
 export class UserComponent {
   @Input({required:true}) user! : User;
   @Output() select = new EventEmitter();
+  @Input({required:true}) selected! : boolean;
   // avatar =input.required<string>();
   // name =input.required<string>();
   get imagePath(){
